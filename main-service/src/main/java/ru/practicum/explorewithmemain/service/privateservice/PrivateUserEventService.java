@@ -20,5 +20,5 @@ public interface PrivateUserEventService {
 
     ParticipationDto rejectRequest(Long userId, Long eventId, Long reqId);
 
-    EventFullDto сancelEvent(Long userId, Long eventId);
+    EventFullDto rejectEvent(Long userId, Long eventId);
 }

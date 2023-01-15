@@ -132,7 +132,7 @@ public class PrivatePrivateUserEventServiceImpl implements PrivateUserEventServi
 
     @Transactional
     @Override
-    public EventFullDto сancelEvent(Long userId, Long eventId) {
+    public EventFullDto rejectEvent(Long userId, Long eventId) {
         userValidation(userId);
         Event event = eventRepository
                 .findById(eventId).orElseThrow(() ->

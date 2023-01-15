@@ -54,10 +54,10 @@ public class PrivateUserEventController {
     }
 
     @PatchMapping("/{eventId}")
-    public EventFullDto сancelEvent(@PathVariable Long userId,
+    public EventFullDto rejectEvent(@PathVariable Long userId,
                                     @PathVariable Long eventId) {
         log.info("сancel event with userId={}, eventId={}", userId, eventId);
-        return privateUserEventService.сancelEvent(userId, eventId);
+        return privateUserEventService.rejectEvent(userId, eventId);
     }
 
     @GetMapping("/{eventId}/requests")
