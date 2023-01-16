@@ -1,29 +1,23 @@
 package ru.practicum.explorewithmemain.client;
 
-import java.util.List;
-
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.*;
 import org.springframework.lang.Nullable;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
+
+import java.util.List;
 
 
 public class RestTemplateClient {
 
     protected final RestTemplate rest;
 
-    public RestTemplateClient(String serverUrl) {
-        this.rest = new RestTemplateBuilder()
+    public RestTemplateClient(RestTemplate rest) {
+/*        this.rest = new RestTemplateBuilder()
                 .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
                 .requestFactory(HttpComponentsClientHttpRequestFactory::new)
-                .build();
+                .build();*/
+        this.rest = rest;
     }
 
     protected <T> ResponseEntity<Object> post(String path, T body) {
@@ -31,8 +25,7 @@ public class RestTemplateClient {
     }
 
 
-    private <T> ResponseEntity<Object> makeAndSendRequest(
-            HttpMethod method, String path, @Nullable T body) {
+    private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method, String path, @Nullable T body) {
         HttpEntity<T> requestEntity = new HttpEntity<>(body, defaultHeaders());
         ResponseEntity<Object> serverResponse;
         try {
