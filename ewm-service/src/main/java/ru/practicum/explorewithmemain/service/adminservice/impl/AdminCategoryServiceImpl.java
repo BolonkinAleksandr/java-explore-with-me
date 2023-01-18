@@ -24,6 +24,15 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
     @Transactional
     @Override
+    public CategoryDto addCategory(NewCategoryDto newCategoryDto) {
+        Category category = CategoryMapper.toCategory(newCategoryDto);
+        categoryRepository.save(category);
+        log.info("add new category={}", category.getName());
+        return CategoryMapper.toCategoryDto(category);
+    }
+
+    @Transactional
+    @Override
     public CategoryDto updateCategoryByIdAndName(
             CategoryDto categoryDto) {
         Category category = categoryRepository
@@ -33,15 +42,6 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
         category.setName(categoryDto.getName());
         categoryRepository.saveAndFlush(category);
         log.info("change category to categoryDto={}", category.getName());
-        return CategoryMapper.toCategoryDto(category);
-    }
-
-    @Transactional
-    @Override
-    public CategoryDto addCategory(NewCategoryDto newCategoryDto) {
-        Category category = CategoryMapper.toCategory(newCategoryDto);
-        categoryRepository.save(category);
-        log.info("add new category={}", category.getName());
         return CategoryMapper.toCategoryDto(category);
     }
 

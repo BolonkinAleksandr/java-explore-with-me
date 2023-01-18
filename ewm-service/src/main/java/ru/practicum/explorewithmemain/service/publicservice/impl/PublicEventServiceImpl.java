@@ -32,7 +32,6 @@ public class PublicEventServiceImpl implements PublicEventService {
     private final EventRepository eventRepository;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @Transactional(readOnly = true)
     @Override
     public List<EventShortDto> getEventsByTextAndCategory(
             String text, List<Long> categories,
@@ -111,7 +110,6 @@ public class PublicEventServiceImpl implements PublicEventService {
         return EventMapper.toListEventShortDto(listEvent);
     }
 
-    @Transactional
     @Override
     public EventFullDto getEventById(Long id, HttpServletRequest request) {
         Event event = eventRepository.findByIdAndState(id, State.PUBLISHED)

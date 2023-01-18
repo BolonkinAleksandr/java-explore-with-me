@@ -31,7 +31,6 @@ public class AdminEventServiceImpl implements AdminEventService {
     private final CategoryRepository categoryRepository;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @Transactional(readOnly = true)
     @Override
     public List<EventFullDto> getEventsByUsersStatesCategories(
             List<Long> users, List<String> states, List<Long> categories,
@@ -75,11 +74,6 @@ public class AdminEventServiceImpl implements AdminEventService {
                     String.format("Event list was not found."));
         }
         return EventMapper.toListEventFullDto(listEvents);
-    }
-
-    private Event eventValidation(Long eventId) {
-        return eventRepository.findById(eventId).orElseThrow(() -> new NotFoundException("object doesn't found ",
-                String.format("Event with id={} was not found.", eventId)));
     }
 
     @Transactional
@@ -149,4 +143,10 @@ public class AdminEventServiceImpl implements AdminEventService {
         log.info("reject event userId={}", eventId);
         return EventMapper.toEventFullDto(event);
     }
+
+    private Event eventValidation(Long eventId) {
+        return eventRepository.findById(eventId).orElseThrow(() -> new NotFoundException("object doesn't found ",
+                String.format("Event with id={} was not found.", eventId)));
+    }
 }
+

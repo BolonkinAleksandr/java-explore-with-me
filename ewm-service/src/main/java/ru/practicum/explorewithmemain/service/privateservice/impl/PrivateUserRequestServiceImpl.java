@@ -60,7 +60,6 @@ public class PrivateUserRequestServiceImpl implements PrivateUserRequestService 
         return ParticipationMapper.toParticipationRequestDto(participation);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<ParticipationDto> getUserRequests(Long userId) {
         List<Participation> listRequest = requestRepository

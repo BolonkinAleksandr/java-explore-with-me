@@ -24,13 +24,11 @@ public class StatsServiceImpl implements StatsService {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @Transactional
     @Override
     public EndpointHit addEndpointHit(EndpointHit endpointHit) {
         return statsRepository.saveAndFlush(endpointHit);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<ViewStats> getListViewStats(Optional<String> start, Optional<String> end,
                                             Optional<List<String>> uris, Boolean unique)

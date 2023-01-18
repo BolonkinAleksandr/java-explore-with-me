@@ -29,7 +29,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
     private final RequestRepository requestRepository;
     private final LocationRepository locationRepository;
 
-    @Transactional(readOnly = true)
     @Override
     public List<EventShortDto> getUserEvents(Long userId, Integer from, Integer size) {
         final Pageable pageable = CustomPageable.of(from, size);
@@ -117,7 +116,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public EventFullDto getUserEventById(Long userId, Long eventId) {
         userValidation(userId);
@@ -151,7 +149,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<ParticipationDto> getUserEventRequestsById(Long userId, Long eventId) {
         List<Participation> participation =

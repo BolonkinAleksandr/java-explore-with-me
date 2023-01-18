@@ -23,7 +23,6 @@ public class AdminUserServiceImpl implements AdminUserService {
     private final UserRepository userRepository;
 
 
-    @Transactional(readOnly = true)
     @Override
     public List<UserDto> getUsersByIds(List<Long> ids, Integer from, Integer size) {
         final Pageable pageable = CustomPageable.of(from, size);
