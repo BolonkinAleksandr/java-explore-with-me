@@ -17,12 +17,12 @@ import ru.practicum.explorewithmemain.service.adminservice.AdminCompilationServi
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminCompilationServiceImpl implements AdminCompilationService {
 
     private final EventRepository eventRepository;
     private final CompilationRepository compilationRepository;
 
-    @Transactional
     @Override
     public CompilationDto addCompilation(NewCompilationDto newCompilationDto) {
         Compilation compilation = CompilationMapper.toCompilation(newCompilationDto);
@@ -36,7 +36,6 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         return CompilationMapper.toCompilationDto(compilation);
     }
 
-    @Transactional
     @Override
     public void updateEventInCompilationById(Long compId, Long eventId) {
         Compilation compilation = compilationRepository
@@ -50,7 +49,6 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         log.info("add event eventId={} to compilation compilationId={}", eventId, compId);
     }
 
-    @Transactional
     @Override
     public void unpinCompilationById(Long compId) {
         Compilation compilation = compilationRepository.findById(compId)
@@ -61,7 +59,6 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         log.info("unpin compilation compilationId={}", compId);
     }
 
-    @Transactional
     @Override
     public void pinCompilationById(Long compId) {
         Compilation compilation = compilationRepository.findById(compId)
@@ -72,14 +69,12 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
         log.info("pin compilation compilationId={}", compId);
     }
 
-    @Transactional
     @Override
     public void deleteCompilationById(Long compId) {
         compilationRepository.deleteById(compId);
         log.info("delete compilation compilationId={}", compId);
     }
 
-    @Transactional
     @Override
     public void deleteEventByIdFromCompilation(Long compId, Long eventId) {
         Compilation compilation = compilationRepository

@@ -18,6 +18,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminUserServiceImpl implements AdminUserService {
 
     private final UserRepository userRepository;
@@ -37,7 +38,6 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
 
-    @Transactional
     @Override
     public UserDto addUser(NewUserRequest userRequest) {
         User user = UserMapper.toUser(userRequest);
@@ -46,7 +46,6 @@ public class AdminUserServiceImpl implements AdminUserService {
         return UserMapper.toUserDto(user);
     }
 
-    @Transactional
     @Override
     public void deleteUserById(Long userId) {
         log.info("delete user userId={}", userId);
