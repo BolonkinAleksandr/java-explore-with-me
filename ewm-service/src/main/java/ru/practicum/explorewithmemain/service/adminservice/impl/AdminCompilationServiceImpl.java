@@ -32,7 +32,7 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
             List<Event> events = eventRepository.findAll();
             for (Long id : newCompilationDto.getEvents()) {
                 for (var event : events) {
-                    if (event.getId() == id) {
+                    if (event.getId().equals(id)) {
                         compilation.getEvents().add(event);
                     }
                 }
