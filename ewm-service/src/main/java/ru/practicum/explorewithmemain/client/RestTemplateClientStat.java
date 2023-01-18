@@ -13,12 +13,10 @@ import ru.practicum.explorewithmemain.dto.EndpointHitDto;
 @Service
 public class RestTemplateClientStat extends RestTemplateClient {
 
-    private static final String API_PREFIX = "/hit";
-
     @Autowired
-    public RestTemplateClientStat(@Value("${stats-server.url}") String serverUrl, RestTemplateBuilder builder) {
+    public RestTemplateClientStat(@Value("${stats-server.url}") String serverUrl, @Value("${hit.url}") String hitUrl, RestTemplateBuilder builder) {
         super(builder
-                .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))
+                .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + hitUrl))
                 .requestFactory(HttpComponentsClientHttpRequestFactory::new)
                 .build());
     }
