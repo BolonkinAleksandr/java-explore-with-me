@@ -18,11 +18,11 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AdminCategoryServiceImpl implements AdminCategoryService {
     private final CategoryRepository categoryRepository;
     private final EventRepository eventRepository;
 
-    @Transactional
     @Override
     public CategoryDto addCategory(NewCategoryDto newCategoryDto) {
         Category category = CategoryMapper.toCategory(newCategoryDto);
@@ -31,7 +31,6 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
         return CategoryMapper.toCategoryDto(category);
     }
 
-    @Transactional
     @Override
     public CategoryDto updateCategoryByIdAndName(
             CategoryDto categoryDto) {
@@ -45,7 +44,6 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
         return CategoryMapper.toCategoryDto(category);
     }
 
-    @Transactional
     @Override
     public CategoryDto deleteCategoryById(Long catId) {
         Optional<Category> category = categoryRepository.findById(catId);

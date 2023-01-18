@@ -21,7 +21,6 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class PrivateUserEventServiceImpl implements PrivateUserEventService {
 
     private final UserRepository userRepository;
@@ -43,6 +42,7 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto updateUserIdEvent(Long userId, UpdateEventRequest updateEventRequest) {
         userValidation(userId);
         Event event = eventRepository
@@ -92,6 +92,7 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto addUserEvent(Long userId, NewEventDto newEventDto) {
         User user = userValidation(userId);
         if (locationRepository.findByLatAndLon(newEventDto.getLocation().getLat(),
@@ -128,6 +129,7 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto rejectEvent(Long userId, Long eventId) {
         userValidation(userId);
         Event event = eventRepository
@@ -159,6 +161,7 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
     }
 
     @Override
+    @Transactional
     public ParticipationDto confirmRequest(Long userId, Long eventId, Long reqId) {
         userValidation(userId);
         Event event = eventValidation(eventId);
@@ -187,6 +190,7 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
     }
 
     @Override
+    @Transactional
     public ParticipationDto rejectRequest(Long userId, Long eventId, Long reqId) {
         userValidation(userId);
         if (!eventValidation(eventId).getInitiator().getId().equals(userId)) {

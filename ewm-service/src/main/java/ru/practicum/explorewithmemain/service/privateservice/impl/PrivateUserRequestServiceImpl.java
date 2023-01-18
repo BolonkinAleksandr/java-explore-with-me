@@ -20,7 +20,6 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class PrivateUserRequestServiceImpl implements PrivateUserRequestService {
 
     private final UserRepository userRepository;
@@ -28,6 +27,7 @@ public class PrivateUserRequestServiceImpl implements PrivateUserRequestService 
     private final RequestRepository requestRepository;
 
     @Override
+    @Transactional
     public ParticipationDto addUserRequest(Long userId, Long eventId) {
         if (requestRepository.findRequestByUserIdAndEventId(userId, eventId).isPresent()) {
             throw new ForbiddenException("invalid ", "requestRepository");
@@ -71,6 +71,7 @@ public class PrivateUserRequestServiceImpl implements PrivateUserRequestService 
     }
 
     @Override
+    @Transactional
     public ParticipationDto rejectUserRequestById(Long userId, Long requestId) {
         Participation participation = requestRepository
                 .findRequestById(userId, requestId).orElseThrow(() ->

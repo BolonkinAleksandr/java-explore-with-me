@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explorewithmemain.client.RestTemplateClientStat;
 import ru.practicum.explorewithmemain.dto.EndpointHitDto;
 import ru.practicum.explorewithmemain.dto.EventFullDto;
@@ -26,7 +25,6 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class PublicEventServiceImpl implements PublicEventService {
 
     private final RestTemplateClientStat restTemplateClientStat;

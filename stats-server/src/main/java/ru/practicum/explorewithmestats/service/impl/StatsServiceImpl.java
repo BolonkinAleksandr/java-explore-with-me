@@ -3,7 +3,6 @@ package ru.practicum.explorewithmestats.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explorewithmestats.exception.NotFoundException;
 import ru.practicum.explorewithmestats.model.EndpointHit;
 import ru.practicum.explorewithmestats.model.ViewStats;
@@ -19,7 +18,6 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class StatsServiceImpl implements StatsService {
     private final StatsRepository statsRepository;
 
