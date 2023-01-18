@@ -17,7 +17,7 @@ import ru.practicum.explorewithmemain.service.adminservice.AdminCompilationServi
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AdminAdminCompilationServiceImpl implements AdminCompilationService {
+public class AdminCompilationServiceImpl implements AdminCompilationService {
 
     private final EventRepository eventRepository;
     private final CompilationRepository compilationRepository;

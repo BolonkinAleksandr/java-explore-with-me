@@ -21,7 +21,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PrivatePrivateUserEventServiceImpl implements PrivateUserEventService {
+public class PrivateUserEventServiceImpl implements PrivateUserEventService {
 
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;

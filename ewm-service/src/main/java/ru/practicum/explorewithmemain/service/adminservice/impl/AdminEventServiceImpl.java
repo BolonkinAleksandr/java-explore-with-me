@@ -25,7 +25,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AdminAdminEventServiceImpl implements AdminEventService {
+public class AdminEventServiceImpl implements AdminEventService {
 
     private final EventRepository eventRepository;
     private final CategoryRepository categoryRepository;

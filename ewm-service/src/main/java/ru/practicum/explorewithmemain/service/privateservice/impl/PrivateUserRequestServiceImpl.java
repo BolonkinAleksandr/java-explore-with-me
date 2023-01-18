@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PrivatePrivateUserRequestServiceImpl implements PrivateUserRequestService {
+public class PrivateUserRequestServiceImpl implements PrivateUserRequestService {
 
     private final UserRepository userRepository;
     private final EventRepository eventRepository;

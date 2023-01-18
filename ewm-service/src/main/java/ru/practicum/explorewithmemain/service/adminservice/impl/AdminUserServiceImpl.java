@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AdminAdminUserServiceImpl implements AdminUserService {
+public class AdminUserServiceImpl implements AdminUserService {
 
     private final UserRepository userRepository;
 
