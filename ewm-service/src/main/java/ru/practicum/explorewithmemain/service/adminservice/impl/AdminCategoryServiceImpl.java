@@ -13,8 +13,6 @@ import ru.practicum.explorewithmemain.repository.CategoryRepository;
 import ru.practicum.explorewithmemain.repository.EventRepository;
 import ru.practicum.explorewithmemain.service.adminservice.AdminCategoryService;
 
-import java.util.Optional;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -34,10 +32,7 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
     @Override
     public CategoryDto updateCategoryByIdAndName(
             CategoryDto categoryDto) {
-        Category category = categoryRepository
-                .findById(categoryDto.getId())
-                .orElseThrow(() ->
-                        new RequestException("error with request", "categoryRepository"));
+        Category category = findAndValidateCategory(categoryDto.getId());
         category.setName(categoryDto.getName());
         categoryRepository.saveAndFlush(category);
         log.info("change category to categoryDto={}", category.getName());
@@ -46,16 +41,19 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
     @Override
     public CategoryDto deleteCategoryById(Long catId) {
-        Optional<Category> category = categoryRepository.findById(catId);
-        if (category.isEmpty()) {
-            throw new RequestException("error with request", "this category doesn't exist");
-        }
-
+        Category category = findAndValidateCategory(catId);
         if (!eventRepository.findCategoryByIdInEvent(catId).get().isEmpty()) {
             throw new RequestException("error with request", " category have events");
         }
-        categoryRepository.deleteById(category.get().getId());
-        log.info("delete category={}", category.get().getName());
-        return CategoryMapper.toCategoryDto(category.get());
+        categoryRepository.deleteById(category.getId());
+        log.info("delete category={}", category.getName());
+        return CategoryMapper.toCategoryDto(category);
+    }
+
+    private Category findAndValidateCategory(Long catId) {
+        return categoryRepository
+                .findById(catId)
+                .orElseThrow(() ->
+                        new RequestException("error with request", "categoryRepository"));
     }
 }
