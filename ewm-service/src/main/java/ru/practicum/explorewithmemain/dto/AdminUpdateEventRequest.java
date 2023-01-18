@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.practicum.explorewithmemain.model.Location;
+import ru.practicum.explorewithmemain.util.Constants;
 
 import java.time.LocalDateTime;
 
@@ -17,7 +18,7 @@ public class AdminUpdateEventRequest {
     private String annotation;
     private Long category;
     private String description;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = Constants.DATA_TIME_PATTERN)
     private LocalDateTime eventDate;
     private Location location;
     private Boolean paid;

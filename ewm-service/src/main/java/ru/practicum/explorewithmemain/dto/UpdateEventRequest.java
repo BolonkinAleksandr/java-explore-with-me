@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.practicum.explorewithmemain.util.Constants;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public class UpdateEventRequest {
     private String annotation;
     private Long category;
     private String description;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = Constants.DATA_TIME_PATTERN)
     private LocalDateTime eventDate;
     @NotNull
     private Long eventId;
