@@ -14,6 +14,8 @@ import ru.practicum.explorewithmemain.repository.CompilationRepository;
 import ru.practicum.explorewithmemain.repository.EventRepository;
 import ru.practicum.explorewithmemain.service.adminservice.AdminCompilationService;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -27,8 +29,13 @@ public class AdminCompilationServiceImpl implements AdminCompilationService {
     public CompilationDto addCompilation(NewCompilationDto newCompilationDto) {
         Compilation compilation = CompilationMapper.toCompilation(newCompilationDto);
         if (!newCompilationDto.getEvents().isEmpty()) {
+            List<Event> events = eventRepository.findAll();
             for (Long id : newCompilationDto.getEvents()) {
-                compilation.getEvents().add(eventRepository.findById(id).get());
+                for (var event : events) {
+                    if (event.getId() == id) {
+                        compilation.getEvents().add(event);
+                    }
+                }
             }
         }
         compilationRepository.save(compilation);
