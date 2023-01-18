@@ -20,13 +20,13 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PrivateUserRequestServiceImpl implements PrivateUserRequestService {
 
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
     private final RequestRepository requestRepository;
 
-    @Transactional
     @Override
     public ParticipationDto addUserRequest(Long userId, Long eventId) {
         if (requestRepository.findRequestByUserIdAndEventId(userId, eventId).isPresent()) {
@@ -60,7 +60,6 @@ public class PrivateUserRequestServiceImpl implements PrivateUserRequestService 
         return ParticipationMapper.toParticipationRequestDto(participation);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<ParticipationDto> getUserRequests(Long userId) {
         List<Participation> listRequest = requestRepository
@@ -71,7 +70,6 @@ public class PrivateUserRequestServiceImpl implements PrivateUserRequestService 
         return ParticipationMapper.toListParticipationRequestDto(listRequest);
     }
 
-    @Transactional
     @Override
     public ParticipationDto rejectUserRequestById(Long userId, Long requestId) {
         Participation participation = requestRepository

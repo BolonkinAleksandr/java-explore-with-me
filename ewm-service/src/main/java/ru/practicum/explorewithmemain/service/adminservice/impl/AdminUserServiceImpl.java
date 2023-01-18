@@ -18,12 +18,12 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminUserServiceImpl implements AdminUserService {
 
     private final UserRepository userRepository;
 
 
-    @Transactional(readOnly = true)
     @Override
     public List<UserDto> getUsersByIds(List<Long> ids, Integer from, Integer size) {
         final Pageable pageable = CustomPageable.of(from, size);
@@ -38,7 +38,6 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
 
-    @Transactional
     @Override
     public UserDto addUser(NewUserRequest userRequest) {
         User user = UserMapper.toUser(userRequest);
@@ -47,7 +46,6 @@ public class AdminUserServiceImpl implements AdminUserService {
         return UserMapper.toUserDto(user);
     }
 
-    @Transactional
     @Override
     public void deleteUserById(Long userId) {
         log.info("delete user userId={}", userId);

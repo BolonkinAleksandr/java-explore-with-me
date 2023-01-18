@@ -25,13 +25,13 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminEventServiceImpl implements AdminEventService {
 
     private final EventRepository eventRepository;
     private final CategoryRepository categoryRepository;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    @Transactional(readOnly = true)
     @Override
     public List<EventFullDto> getEventsByUsersStatesCategories(
             List<Long> users, List<String> states, List<Long> categories,
@@ -82,7 +82,6 @@ public class AdminEventServiceImpl implements AdminEventService {
                 String.format("Event with id={} was not found.", eventId)));
     }
 
-    @Transactional
     @Override
     public EventFullDto updateEventById(Long eventId, AdminUpdateEventRequest adminUpdateEventRequest) {
         Event event = eventValidation(eventId);
@@ -120,7 +119,6 @@ public class AdminEventServiceImpl implements AdminEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional
     @Override
     public EventFullDto publishEventById(Long eventId) {
         Event event = eventValidation(eventId);
@@ -137,7 +135,6 @@ public class AdminEventServiceImpl implements AdminEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional
     @Override
     public EventFullDto rejectEventById(Long eventId) {
         Event event = eventValidation(eventId);

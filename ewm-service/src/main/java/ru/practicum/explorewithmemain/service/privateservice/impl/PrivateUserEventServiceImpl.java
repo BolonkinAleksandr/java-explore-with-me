@@ -21,6 +21,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PrivateUserEventServiceImpl implements PrivateUserEventService {
 
     private final UserRepository userRepository;
@@ -29,7 +30,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
     private final RequestRepository requestRepository;
     private final LocationRepository locationRepository;
 
-    @Transactional(readOnly = true)
     @Override
     public List<EventShortDto> getUserEvents(Long userId, Integer from, Integer size) {
         final Pageable pageable = CustomPageable.of(from, size);
@@ -42,7 +42,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return EventMapper.toListEventShortDto(listEvent);
     }
 
-    @Transactional
     @Override
     public EventFullDto updateUserIdEvent(Long userId, UpdateEventRequest updateEventRequest) {
         userValidation(userId);
@@ -92,7 +91,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional
     @Override
     public EventFullDto addUserEvent(Long userId, NewEventDto newEventDto) {
         User user = userValidation(userId);
@@ -117,7 +115,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public EventFullDto getUserEventById(Long userId, Long eventId) {
         userValidation(userId);
@@ -130,7 +127,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional
     @Override
     public EventFullDto rejectEvent(Long userId, Long eventId) {
         userValidation(userId);
@@ -151,7 +147,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return EventMapper.toEventFullDto(event);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<ParticipationDto> getUserEventRequestsById(Long userId, Long eventId) {
         List<Participation> participation =
@@ -163,7 +158,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return ParticipationMapper.toListParticipationRequestDto(participation);
     }
 
-    @Transactional
     @Override
     public ParticipationDto confirmRequest(Long userId, Long eventId, Long reqId) {
         userValidation(userId);
@@ -192,7 +186,6 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         return ParticipationMapper.toParticipationRequestDto(participation);
     }
 
-    @Transactional
     @Override
     public ParticipationDto rejectRequest(Long userId, Long eventId, Long reqId) {
         userValidation(userId);
