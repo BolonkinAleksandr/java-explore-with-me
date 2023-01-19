@@ -26,12 +26,13 @@ public class PublicCommentServiceImpl implements PublicCommentService {
 
     @Autowired
     public PublicCommentServiceImpl(CommentRepository commentRepository,
-                              UserRepository userRepository,
-                              EventRepository eventRepository) {
+                                    UserRepository userRepository,
+                                    EventRepository eventRepository) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.eventRepository = eventRepository;
     }
+
     @Override
     public List<Comment> findCommentsByUser(long userId, int from, int size) {
         findAndValidateUser(userId);

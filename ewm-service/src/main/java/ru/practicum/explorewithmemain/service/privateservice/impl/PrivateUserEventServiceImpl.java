@@ -208,15 +208,16 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         log.info("reject request userId={}", userId);
         return ParticipationMapper.toParticipationRequestDto(participation);
     }
+
     @Override
     @Transactional
-    public Event findEventById(Long eventId){
+    public Event findEventById(Long eventId) {
         return eventValidation(eventId);
     }
 
     @Override
     @Transactional
-    public User findUserById(Long userId){
+    public User findUserById(Long userId) {
         return userValidation(userId);
     }
 

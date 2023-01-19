@@ -11,7 +11,7 @@ import static ru.practicum.explorewithmemain.mapper.EventMapper.toEventShortDto;
 import static ru.practicum.explorewithmemain.mapper.UserMapper.toUserDto;
 
 public class Methods {
-    public static List<CommentDto> buildCommentList(List<Comment> comments){
+    public static List<CommentDto> buildCommentList(List<Comment> comments) {
         List<CommentDto> commentDtos = new ArrayList<>();
         for (Comment c : comments) {
             CommentDto commentDto = toCommentDto(c);

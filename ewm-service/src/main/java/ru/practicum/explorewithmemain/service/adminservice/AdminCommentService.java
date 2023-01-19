@@ -8,7 +8,10 @@ import java.util.List;
 public interface AdminCommentService {
 
     Comment approve(long commentId);
+
     Comment reject(long commentId);
+
     List<Comment> findComments(long eventId, State status, int from, int size);
+
     void delete(long commentId);
 }
