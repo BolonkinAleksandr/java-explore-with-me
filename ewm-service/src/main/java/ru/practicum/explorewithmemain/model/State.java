@@ -1,5 +1,5 @@
 package ru.practicum.explorewithmemain.model;
 
 public enum State {
-    PENDING, PUBLISHED, CANCELED
+    PENDING, PUBLISHED, CANCELED, APPROVE
 }
