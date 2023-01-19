@@ -8,6 +8,7 @@ import lombok.Setter;
 import ru.practicum.explorewithmemain.model.State;
 import ru.practicum.explorewithmemain.util.Constants;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDto {
+    @NotNull
     private Long id;
     private String text;
     private UserDto user;
