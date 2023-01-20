@@ -7,7 +7,8 @@ import ru.practicum.explorewithmemain.util.Constants;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
