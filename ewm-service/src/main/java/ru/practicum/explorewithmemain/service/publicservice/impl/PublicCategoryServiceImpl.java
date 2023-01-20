@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explorewithmemain.dto.CategoryDto;
 import ru.practicum.explorewithmemain.exceptions.NotFoundException;
 import ru.practicum.explorewithmemain.mapper.CategoryMapper;
@@ -17,6 +18,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PublicCategoryServiceImpl implements PublicCategoryService {
 
     private final CategoryRepository categoryRepository;

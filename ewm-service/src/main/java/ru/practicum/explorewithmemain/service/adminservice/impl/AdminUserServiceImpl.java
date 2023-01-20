@@ -18,6 +18,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminUserServiceImpl implements AdminUserService {
 
     private final UserRepository userRepository;
