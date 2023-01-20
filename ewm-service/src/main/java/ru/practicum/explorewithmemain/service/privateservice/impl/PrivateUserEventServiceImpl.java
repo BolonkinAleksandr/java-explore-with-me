@@ -21,6 +21,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PrivateUserEventServiceImpl implements PrivateUserEventService {
 
     private final UserRepository userRepository;
