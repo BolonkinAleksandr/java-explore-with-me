@@ -36,7 +36,7 @@ public class CommentMapper {
 
     public static Comment toComment(NewCommentDto commentDto) {
         return new Comment(
-                0,
+                0L,
                 commentDto.getText(),
                 new User(),
                 LocalDateTime.now(),

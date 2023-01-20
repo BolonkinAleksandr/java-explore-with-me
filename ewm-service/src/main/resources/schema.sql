@@ -91,10 +91,8 @@ CREATE TABLE IF NOT EXISTS comments
 (
     id       BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     text     VARCHAR(1000)               NOT NULL,
-    user_id  BIGINT                      NOT NULL,
+    user_id  BIGINT                      NOT NULL REFERENCES users (id) ON DELETE CASCADE,
     created  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    event_id BIGINT                      NOT NULL,
-    status   VARCHAR(20)                 NOT NULL,
-    CONSTRAINT fk_comments_user_id FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    CONSTRAINT fk_comments_event_id FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE
+    event_id BIGINT                      NOT NULL REFERENCES events (id) ON DELETE CASCADE,
+    status   VARCHAR(20)                 NOT NULL
 );
