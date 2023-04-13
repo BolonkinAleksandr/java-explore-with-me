@@ -21,6 +21,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PrivateUserEventServiceImpl implements PrivateUserEventService {
 
     private final UserRepository userRepository;
@@ -207,6 +208,18 @@ public class PrivateUserEventServiceImpl implements PrivateUserEventService {
         requestRepository.save(participation);
         log.info("reject request userId={}", userId);
         return ParticipationMapper.toParticipationRequestDto(participation);
+    }
+
+    @Override
+    @Transactional
+    public Event findEventById(Long eventId) {
+        return eventValidation(eventId);
+    }
+
+    @Override
+    @Transactional
+    public User findUserById(Long userId) {
+        return userValidation(userId);
     }
 
     private Event eventValidation(Long eventId) throws NotFoundException {
