@@ -1,8 +1,5 @@
 # Приложение Explore With Me
 
-link on pull request:
-https://github.com/BolonkinAleksandr/java-explore-with-me/pull/2#issue-1534025450
-
 ## Используемые технологии
 
 Java, Spring Boot, Lombok, Hibernate, PostgreSQL, Maven, Docker
