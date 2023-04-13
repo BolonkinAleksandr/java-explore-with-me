@@ -5,7 +5,7 @@
 - Java 11
 - Spring Boot
 - Lombok
-- Hibernate
+- JPA, Hibernate
 - PostgreSQL
 - Maven
 - Docker
