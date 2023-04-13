@@ -2,7 +2,8 @@
 
 ## Используемые технологии
 
-Java, Spring Boot, Lombok, Hibernate, PostgreSQL, Maven, Docker
+-Java 11,
+-Spring Boot, Lombok, Hibernate, PostgreSQL, Maven, Docker
 
 ## Описание приложения
 
